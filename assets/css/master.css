@@ -2,6 +2,49 @@
 	margin-top: 7px;
 }
 
+.modalalbum-title {
+	font-family: Raleway, arial, sans-serif;
+	font-weight: 100;
+	color: #222;
+	font-size: 80px;
+	position: absolute;
+	top: 30px;
+	margin-left: 10px;
+}
+
+.playlist-name {
+	font-family: Raleway, sans-serif;
+	font-weight: 200;
+	font-size: 16pt;
+	color: #222;
+}
+.artistmodal .playlists .thumbnail {
+	width: 250px;
+	height: 250px;
+}
+.modalartist {
+	font-family: Raleway, arial, sans-serif;
+	font-weight: 100;
+	color: #222;
+	font-size: 80px;
+	position: absolute;
+	top: 30px;
+	margin-left: 10px;
+}
+
+.modalalbum-artist {
+	font-family: Raleway, arial, sans-serif;
+	font-weight: 200;
+	color: #222;
+	font-size: 20px;
+	position: absolute;
+	top: 120px;
+	margin-left: 15px;
+}
+.modalalbum-artist a {
+	color: #222;
+}
+
 .full-type {
 	text-align: right;
 	float: right;
