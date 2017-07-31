@@ -197,8 +197,7 @@ $(document).ready(function(){
 		if(i==0){
 			extraclasses = " active";
 		}
-		$('.carousel').append('<a class="carousel-item album album'+i+extraclasses+'"><img src="'+album.icon+'"><h3 class="artist">'+album.artist+'</h3><h3 class="album-title">'+name+'</h3><h3 class="see">View</h3></a>');
-		$('.album'+i+" .see").click(albummake(i));
+		$('.carousel').append('<a href="javascript:loadAlbum(\''+i+'\');" class="carousel-item album album'+i+extraclasses+'"><img src="'+album.icon+'"><h3 class="artist">'+album.artist+'</h3><h3 class="album-title">'+name+'</h3></a>');
 	};
 	$('.carousel').carousel();
 	setInterval(checkEmpty,0);
