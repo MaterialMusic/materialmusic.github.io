@@ -232,6 +232,19 @@ function checkSearch(){
 				};
 			};
 		};
+		for (var i = artists.length - 1; i >= 0; i--) {
+			var name = artists[i]["name"];
+			var artist = artists[i];
+
+			if(search.toLowerCase() == name.toLowerCase() || search.toLowerCase() == name.substr(0, search.length).toLowerCase()){
+				searchResults.push({
+					type: "artist",
+					name: name,
+					artist: playlists[i].artist,
+					id: i,
+				});
+			};
+		};
 	} else {
 		$(".results").empty();
 	};
@@ -246,6 +259,8 @@ function checkSearch(){
 				html += "<li class='collection-item result'><a class='result-name' href='javascript:loadAlbum(\""+result["playlistId"]+"\");'>"+result["name"]+"</a> <span class='full-type'>type: <span class='result-type'>"+result["type"]+"</span></span>";
 			} else if(result["type"] == "playlist"){
 				html += "<li class='collection-item result'><a class='result-name' href='javascript:loadAlbum(\""+result["id"]+"\");'>"+result["name"]+"</a> <span class='full-type'>type: <span class='result-type'>"+result["type"]+"</span></span>";
+			} else if(result["type"] == "artist"){
+				html += "<li class='collection-item result'><a class='result-name' href='javascript:loadArtist(\""+result["id"]+"\");'>"+result["name"]+"</a> <span class='full-type'>type: <span class='result-type'>"+result["type"]+"</span></span>";
 			};
 		};
 		$(".results").html(html);
