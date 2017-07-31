@@ -1,7 +1,58 @@
+var artists = [
+{
+	name: "Kodaline",
+	id: 0,
+	icon: "assets/imgs/artists/kodaline.jpg",
+	playlists: [
+		{
+			name: "In A Perfect World",
+			id: 0
+		},
+		{
+			name: "Love Like This",
+			id: 3
+		}
+	]
+},
+{
+	name: "Charlie Puth",
+	icon: "assets/imgs/artists/charlieputh.jpg",
+	id: 1,
+	playlists: [
+		{
+			name: "Nine Track Mind",
+			id: 1
+		}
+	]
+},
+{
+	name: "Justin Bieber",
+	icon: "assets/imgs/artists/justinbieber.jpg",
+	id: 2,
+	playlists: [
+		{
+			name: "Purpose (Deluxe)",
+			id: 2
+		}
+	]
+},
+{
+	name: "Kygo",
+	icon: "assets/imgs/artists/kygo.jpg",
+	id: 3,
+	playlists: [
+		{
+			name: "Cloud Nine",
+			id: 4
+		}
+	]
+}
+];
 var playlists = [
 {
 	name: "In A Perfect World",
 	artist: "Kodaline",
+	artistId: 0,
 	icon: "assets/imgs/playlists/inaperfectworld.jpeg",
 	songs: [
 		{
@@ -21,6 +72,7 @@ var playlists = [
 {
 	name: "Nine Track Mind",
 	artist: "Charlie Puth",
+	artistId: 1,
 	icon: "assets/imgs/playlists/ninetrackmind.jpg",
 	songs: [
 		{
@@ -40,6 +92,7 @@ var playlists = [
 {
 	name: "Purpose (Deluxe)",
 	artist: "Justin Bieber",
+	artistId: 2,
 	icon: "assets/imgs/playlists/purposedeluxe.jpg",
 	songs: [
 		{
@@ -59,6 +112,7 @@ var playlists = [
 {
 	name: "Love Like This",
 	artist: "Kodaline",
+	artistId: 0,
 	icon: "assets/imgs/playlists/lovelikethis.jpg",
 	songs: [
 		{
@@ -78,6 +132,7 @@ var playlists = [
 {
 	name: "Cloud Nine",
 	artist: "Kygo",
+	artistId: 3,
 	icon: "assets/imgs/playlists/cloudnine.jpg",
 	songs: [
 		{
@@ -96,6 +151,23 @@ var playlists = [
 }
 ];
 
+function loadArtist(id){
+	$(".modalartist").html(artists[id]["name"]);
+	var html = "";
+	for (var i = artists[id].playlists.length - 1; i >= 0; i--) {
+		var playlist = artists[id].playlists[i];
+		html += "<div class='col s4'>";
+		html += "<a href='javascript:$(\".artistmodal\").modal(\"close\");loadAlbum("+playlist["id"]+");'><img class='thumbnail' src='"+playlists[playlist["id"]].icon+"'>";
+		html += "<span style='display:block;' class='playlist-name'>"+playlist["name"]+"</span></a>";
+		html += "</div>";
+	};
+	$(".artistmodal .thumbnail").attr("src", artists[id].icon);
+	$(".artistmodal .playlists").empty();
+	$(".artistmodal .playlists").append(html);
+
+	$(".artistmodal").modal("open");
+}
+
 var musicFile;
 function playAudio(file){
 	musicFile = new Audio(file);
@@ -103,32 +175,33 @@ function playAudio(file){
 }
 
 function closebtn(){
-	$(".fullalbum").removeClass("visible");
+	$(".modalalbum").removeClass("visible");
 	$(".shader").removeClass("visible");
 }
 
 function loadSongs(pos){
 	var songs = playlists[pos]["songs"];
-	$(".fullalbum-title").html(playlists[pos]["name"]);
-	$(".fullalbum .thumbnail").attr("src", playlists[pos].icon);
-	$(".fullalbum .collection").empty();
+	$(".modalalbum-title").html(playlists[pos]["name"]);
+	$(".modalalbum-artist").html("by <a href='javascript:loadArtist(\""+playlists[pos].artistId+"\");'>"+playlists[pos]["artist"]+"</a>");
+	$(".modalalbum img").attr("src", playlists[pos].icon);
+	$(".modalalbum .collection").empty();
 	for (var i = songs.length - 1; i >= 0; i--) {
-		$(".fullalbum .collection").append('<li class="collection-item"><a href="javascript:playAudio(\''+songs[i].file+'\');">'+songs[i]["name"]+'</a></li>');
+		$(".modalalbum .collection").append('<li class="collection-item"><a href="javascript:playAudio(\''+songs[i].file+'\');">'+songs[i]["name"]+'</a></li>');
 	};
 }
 
 function albummake(i){
 	return function(){
 		loadSongs(i);
-		$(".fullalbum").toggleClass("visible");
-		$(".shader").toggleClass("visible");
+		$(".modalalbum").modal("open");
+		//$(".shader").toggleClass("visible");
 	};
 }
 
 function loadAlbum(i){
 	loadSongs(i);
-	$(".fullalbum").toggleClass("visible");
-	$(".shader").toggleClass("visible");
+	$(".modalalbum").modal("open");
+	//$(".shader").toggleClass("visible");
 }
 
 function checkSearch(){
@@ -200,5 +273,6 @@ $(document).ready(function(){
 		$('.carousel').append('<a href="javascript:loadAlbum(\''+i+'\');" class="carousel-item album album'+i+extraclasses+'"><img src="'+album.icon+'"><h3 class="artist">'+album.artist+'</h3><h3 class="album-title">'+name+'</h3></a>');
 	};
 	$('.carousel').carousel();
+	$('.modal').modal();
 	setInterval(checkEmpty,0);
 });
