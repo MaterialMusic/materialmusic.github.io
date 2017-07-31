@@ -1,0 +1,107 @@
+.container {
+	margin-top: 7px;
+}
+
+.full-type {
+	text-align: right;
+	float: right;
+}
+
+.album .album-title {
+	font-family: Raleway, arial, sans-serif;
+	font-weight: 200;
+	color: #222;
+	font-size: 16pt;
+	text-align: center;
+	margin-top: 5px;
+}
+.album .artist {
+	font-family: Raleway, arial, sans-serif;
+	font-weight: 200;
+	color: #444;
+	font-size: 10pt;
+	text-align: center;
+	margin: 0;
+	margin-top: 5px;
+}
+.album .see {
+	font-family: Raleway, arial, sans-serif;
+	font-weight: 200;
+	background: #2980b9;
+	padding: 5px 8px;
+	border-radius: 5px;
+	color: #fff;
+	font-size: 12pt;
+	text-align: center;
+	margin: 0;
+	margin-top: 5px;
+	cursor: pointer;
+	transition: 0.25s;
+	-webkit-transition: 0.25s;
+	-moz-transition: 0.25s;
+	-o-transition: 0.25s;
+}
+.album .see:hover {
+	background: #3498db;
+}
+
+
+.fullalbum {
+	position: absolute;
+	top: -600px;
+	height: 600px;
+	width: 400px;
+	left: 40%;
+	background: #fff;
+	border-radius: 3px;
+	transition: 0.3s;
+	-webkit-transition: 0.3s;
+	-moz-transition: 0.3s;
+	-o-transition: 0.3s;
+	z-index: 9;
+}
+.fullalbum.visible {
+	top: 50px;
+}
+.fullalbum-title {
+	font-family: Raleway, arial, sans-serif;
+	font-weight: 200;
+	color: #222;
+	font-size: 26px;
+	text-align: center;
+	margin-top: 225px;
+}
+.fullalbum .thumbnail {
+	width: 200px;
+	height: 200px;
+	text-align: center;
+	margin: 5px auto;
+	position: absolute;
+	left: 100px;
+	top: 10px;
+}
+.fullalbum ul.collection {
+	border-left: none;
+	border-right: none;
+}
+.closebtndiv {
+	text-align: center;
+}
+.seebtndiv {
+
+}
+
+div.shader {
+	background: #555;
+	opacity: 0.75;
+	display: none;
+	position: absolute;
+	width: 100vw;
+	height: 100vh;
+	left: 0;
+	top:0;
+	z-index: 8;
+}
+div.shader.visible {
+	display: block;
+}
